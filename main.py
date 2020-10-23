@@ -10,7 +10,6 @@ result.sort()
 result = [el for el, _ in groupby(result)]
 resultFile = open('result.txt', 'w')
 for line in result:
-    print(line)
     resultFile.write(line)
     resultFile.write('\n')
 
