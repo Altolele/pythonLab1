@@ -1,16 +1,18 @@
-# This is a sample Python script.
+import re
+from itertools import groupby
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+pattern = r"\@[a-zA-Z0-9_-]+?\.[a-zA-Z]{2,6}"
 
+inputFile = open('emails.txt', 'r')
+result = inputFile.read()
+result = re.findall(pattern, result)
+result.sort()
+result = [el for el, _ in groupby(result)]
+resultFile = open('result.txt', 'w')
+for line in result:
+    print(line)
+    resultFile.write(line)
+    resultFile.write('\n')
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('Broo')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+inputFile.close()
+resultFile.close()
